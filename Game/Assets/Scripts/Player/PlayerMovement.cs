@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     private float dirX = 0f;
 
+    public bool canMove = true;
+
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private float moveSpeed;
@@ -29,11 +31,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dirX = Input.GetAxisRaw("Horizontal");
-        _rb.velocity = new Vector2(dirX * moveSpeed, _rb.velocity.y);
-        if (Input.GetButtonDown("Jump") && IsGrounded()) _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+        if (canMove)
+        {
+            dirX = Input.GetAxisRaw("Horizontal");
+            _rb.velocity = new Vector2(dirX * moveSpeed, _rb.velocity.y);
+            if (Input.GetButtonDown("Jump") && IsGrounded()) _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
 
-        UpdateAnimationStateMachine();
+            UpdateAnimationStateMachine();
+        }
     }
 
     /// <summary>
@@ -51,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateAnimationStateMachine()
     {
         MovementState currentState = MovementState.IDLE;
-        
+
         //Verifica se o personagem está se movendo
         if (dirX != 0)
         {
@@ -66,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Verifica se o personagem está no ar
-        if(!IsGrounded()) currentState = MovementState.JUMP;
+        if (!IsGrounded()) currentState = MovementState.JUMP;
 
         _anim.SetInteger("state", (int)currentState);
     }
