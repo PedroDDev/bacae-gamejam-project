@@ -46,14 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - loop: 0
-    Name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+    Name: JumpIn
+    clip: {fileID: 8300000, guid: 3c47bce5f0db86d4ca493d90d2d411d9, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
   - loop: 0
-    Name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+    Name: JumpOut
+    clip: {fileID: 8300000, guid: dd8a936a508d4724c8b4d1b2204ed74f, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}

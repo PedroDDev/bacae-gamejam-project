@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
+    
+    private bool wasJumping = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,9 +37,21 @@ public class PlayerMovement : MonoBehaviour
         {
             dirX = Input.GetAxisRaw("Horizontal");
             _rb.velocity = new Vector2(dirX * moveSpeed, _rb.velocity.y);
-            if (Input.GetButtonDown("Jump") && IsGrounded()) _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+            
+            if (wasJumping && IsGrounded() && _anim.GetInteger("state") == (int)MovementState.JUMP)
+            {
+                AudioManager.instance.Play("JumpOut");
+            }
+            
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                AudioManager.instance.Play("JumpIn");
+                _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+            }
 
             UpdateAnimationStateMachine();
+            
+            wasJumping = _anim.GetInteger("state") == (int)MovementState.JUMP;
         }
     }
 
