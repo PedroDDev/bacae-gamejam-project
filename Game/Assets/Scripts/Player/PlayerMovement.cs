@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     private enum MovementState { IDLE, WALK, JUMP }
 
     private Rigidbody2D _rb;
-    private BoxCollider2D _coll;
+    private CapsuleCollider2D _coll;
     private SpriteRenderer _spr;
     private Animator _anim;
 
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _coll = GetComponent<BoxCollider2D>();
+        _coll = GetComponent<CapsuleCollider2D>();
         _anim = GetComponent<Animator>();
 
         _spr = GetComponentInChildren<SpriteRenderer>();
