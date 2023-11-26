@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour
     void LancaPoder()
     {
         // Criação do poder
-        GameObject poder = Instantiate(poderPrefab, pontoLancamento.position, Quaternion.identity);
+        GameObject poder = Instantiate(poderPrefab, pontoLancamento.position + Vector3.right, Quaternion.identity);
 
         // Define a direção do poder em direção ao jogador
         Vector3 direcao = (boss.transform.position - pontoLancamento.position).normalized;
@@ -85,9 +85,9 @@ public class PlayerScript : MonoBehaviour
 
     public void ConsumirItem()
     {
-        vidaAtual += 10; // Exemplo: recupera 10 de vida ao consumir um item
-        vidaAtual = Mathf.Min(vidaAtual, vidaMaxima); // Garante que a vida não ultrapasse o máximo
-        AtualizaHealthBar();
+        //vidaAtual += 10; // Exemplo: recupera 10 de vida ao consumir um item
+        //vidaAtual = Mathf.Min(vidaAtual, vidaMaxima); // Garante que a vida não ultrapasse o máximo
+        //AtualizaHealthBar();
         poderEspecialItensConsumidos++;
 
         if (poderEspecialItensConsumidos >= 5)

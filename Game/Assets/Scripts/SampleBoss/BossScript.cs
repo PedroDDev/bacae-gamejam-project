@@ -11,12 +11,17 @@ public class BossScript : MonoBehaviour
     public float intervaloLancamento = 5f;
     private Transform jogador;
     private float tempoDesdeUltimoLancamento;
-
+    private float limiteInferior;
+    private float limiteSuperior;
     private float BossHealth = 100.0f;
 
     void Start()
     {
         jogador = GameObject.FindWithTag("Player").transform;
+
+        float alturaTela = Camera.main.orthographicSize;
+        limiteInferior = -alturaTela;
+        limiteSuperior = alturaTela;
     }
 
     // Update is called once per frame
@@ -28,14 +33,14 @@ public class BossScript : MonoBehaviour
 
     void MovimentaBoss()
     {
-        // Movimento vertical alinhado à posição do jogador com um delay
-        float delay = 5.5f;
-        float novaPosY = Mathf.Lerp(transform.position.y, jogador.position.y, Time.deltaTime * velocidadeMovimento);
+        float novaPosY = Mathf.Lerp(transform.position.y, GetNovaPosicaoVertical(), Time.deltaTime * velocidadeMovimento);
         transform.position = new Vector3(transform.position.x, novaPosY, transform.position.z);
-        transform.Translate(Vector3.up * velocidadeMovimento * Time.deltaTime);
+    }
 
-        // Atualiza a posição para a posição do jogador com delay
-        transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, jogador.position.y, Time.deltaTime * delay), transform.position.z);
+    float GetNovaPosicaoVertical()
+    {
+        float novaPosicaoY = Mathf.Clamp(transform.position.y + Random.Range(-1f, 1f) * velocidadeMovimento, limiteInferior, limiteSuperior);
+        return novaPosicaoY;
     }
 
     void LancaPoderPeriodicamente()
