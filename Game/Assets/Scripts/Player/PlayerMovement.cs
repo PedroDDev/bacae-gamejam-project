@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
             if (wasJumping && IsGrounded() && _anim.GetInteger("state") == (int)MovementState.JUMP)
             {
                 AudioManager.instance.Play("JumpOut");
+                if (isWalking)                 AudioManager.instance.Play("Footsteps");
             }
 
             if (Input.GetButtonDown("Jump") && IsGrounded())
@@ -52,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
                 AudioManager.instance.StopPlaying("Footsteps");
                 AudioManager.instance.Play("JumpIn");
                 _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
+            }
+            
+            if(!IsGrounded())
+            {
+                AudioManager.instance.StopPlaying("Footsteps");
             }
 
             UpdateAnimationStateMachine();
