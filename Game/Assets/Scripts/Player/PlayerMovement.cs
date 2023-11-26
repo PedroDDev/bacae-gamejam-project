@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     private enum MovementState { IDLE, WALK, JUMP }
 
     private Rigidbody2D _rb;
-    private BoxCollider2D _coll;
+    private CapsuleCollider2D _coll;
     private SpriteRenderer _spr;
     private Animator _anim;
 
@@ -20,11 +20,15 @@ public class PlayerMovement : MonoBehaviour
     
     private bool wasJumping = false;
 
+    private MovementState currentState;
+    
+    private bool isWalking = false;
+
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _coll = GetComponent<BoxCollider2D>();
+        _coll = GetComponent<CapsuleCollider2D>();
         _anim = GetComponent<Animator>();
 
         _spr = GetComponentInChildren<SpriteRenderer>();
@@ -37,21 +41,34 @@ public class PlayerMovement : MonoBehaviour
         {
             dirX = Input.GetAxisRaw("Horizontal");
             _rb.velocity = new Vector2(dirX * moveSpeed, _rb.velocity.y);
-            
+
             if (wasJumping && IsGrounded() && _anim.GetInteger("state") == (int)MovementState.JUMP)
             {
                 AudioManager.instance.Play("JumpOut");
             }
-            
+
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
+                AudioManager.instance.StopPlaying("Footsteps");
                 AudioManager.instance.Play("JumpIn");
                 _rb.velocity = new Vector2(_rb.velocity.x, jumpForce);
             }
 
             UpdateAnimationStateMachine();
-            
+
             wasJumping = _anim.GetInteger("state") == (int)MovementState.JUMP;
+        }
+
+        // Play or stop footstep sound based on movement
+        if (isWalking && dirX == 0)
+        {
+            isWalking = false;
+            AudioManager.instance.StopPlaying("Footsteps");
+        }
+        if (!isWalking && dirX != 0 && IsGrounded())
+        {
+            isWalking = true;
+            AudioManager.instance.Play("Footsteps");
         }
     }
 
@@ -69,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void UpdateAnimationStateMachine()
     {
-        MovementState currentState = MovementState.IDLE;
+        currentState = MovementState.IDLE;
 
         //Verifica se o personagem está se movendo
         if (dirX != 0)
