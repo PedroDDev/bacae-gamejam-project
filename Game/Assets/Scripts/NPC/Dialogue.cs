@@ -5,7 +5,7 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private string npcName;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float radius;
-    private DialogueController _dc;
+    private DialogueBehavior _dc;
 
     private bool canInitDialogue = true;
 
@@ -15,7 +15,7 @@ public class Dialogue : MonoBehaviour
 
     void Start()
     {
-        _dc = FindObjectOfType<DialogueController>();
+        _dc = FindObjectOfType<DialogueBehavior>();
     }
 
     void FixedUpdate()
@@ -25,9 +25,16 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
+        //if(Input.GetButtonDown("Interact") && onRadius)
+        //{
+        //    if (canInitDialogue)
+        //    {
+
+        //    }
+        //}
         if (Input.GetButtonDown("Interact") && onRadius && canInitDialogue)
         {
-            _dc.Speech(npcName, canAsk);
+            _dc.Speech(npcName, canAsk, gameObject);
             canInitDialogue = false;
         }
         else if (Input.GetButtonDown("Interact"))
@@ -39,7 +46,6 @@ public class Dialogue : MonoBehaviour
     public void Interact()
     {
         Collider2D hit = Physics2D.OverlapCircle(transform.position, radius, playerLayer);
-
         if (hit != null)
         {
             onRadius = true;
