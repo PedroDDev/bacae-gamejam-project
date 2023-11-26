@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManager; 
+using UnityEngine.SceneManagement; 
 
 public class MenuController : MonoBehaviour
 {
@@ -11,18 +11,12 @@ public class MenuController : MonoBehaviour
         AudioManager.instance.Play("Echoes");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayGame()
     {
-
+        SceneManager.LoadScene("LevelDesignScene");
     }
 
-    void PlayGame()
-    {
-        
-    }
-
-    void ExitGame()
+    public void ExitGame()
     {
         Application.Quit();
     }
