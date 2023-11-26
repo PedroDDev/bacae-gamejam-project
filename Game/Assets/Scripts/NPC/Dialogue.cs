@@ -25,10 +25,14 @@ public class Dialogue : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && onRadius && canInitDialogue)
+        if (Input.GetButtonDown("Interact") && onRadius && canInitDialogue)
         {
             _dc.Speech(npcName, canAsk);
             canInitDialogue = false;
+        }
+        else if (Input.GetButtonDown("Interact"))
+        {
+            _dc.NextDialogue();
         }
     }
 
