@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BossScript : MonoBehaviour
 {
-    public float velocidadeMovimento = 3f; // Velocidade de movimento vertical do vilão
-    public GameObject poderPrefab; // Prefab do poder que será lançado
-    public Transform pontoLancamento; // Ponto de onde o poder será lançado
-    public float velocidadePoder = 5f; // Velocidade do poder lançado
+    public float velocidadeMovimento = 3f; // Velocidade de movimento vertical do vilï¿½o
+    public GameObject poderPrefab; // Prefab do poder que serï¿½ lanï¿½ado
+    public Transform pontoLancamento; // Ponto de onde o poder serï¿½ lanï¿½ado
+    public float velocidadePoder = 5f; // Velocidade do poder lanï¿½ado
     public float intervaloLancamento = 5f;
     private Transform jogador;
     private float tempoDesdeUltimoLancamento;
@@ -17,6 +17,7 @@ public class BossScript : MonoBehaviour
 
     void Start()
     {
+        AudioManager.instance.Play("Fight");
         jogador = GameObject.FindWithTag("Player").transform;
 
         float alturaTela = Camera.main.orthographicSize;
@@ -56,10 +57,11 @@ public class BossScript : MonoBehaviour
     }
     void LancaPoder()
     {
-        // Criação do poder
+        AudioManager.instance.Play("EnemyShoot");
+        // Criaï¿½ï¿½o do poder
         GameObject poder = Instantiate(poderPrefab, pontoLancamento.position, Quaternion.identity);
 
-        // Define a direção do poder em direção ao jogador
+        // Define a direï¿½ï¿½o do poder em direï¿½ï¿½o ao jogador
         Vector3 direcao = (jogador.transform.position - pontoLancamento.position).normalized;
         //Vector3 direcao = pontoLancamento.position.normalized;
         direcao.y = 0;
