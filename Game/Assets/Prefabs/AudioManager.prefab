@@ -57,3 +57,39 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - loop: 0
+    Name: FemaleCrying
+    clip: {fileID: 8300000, guid: a744e71758fe5fc44b51052233995c35, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 0
+    Name: MaleCrying
+    clip: {fileID: 8300000, guid: c5918168a4c57044b8f8f0999bec0dca, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 0
+    Name: EnemyShoot
+    clip: {fileID: 8300000, guid: abd77042d10b478459a5f973887cdf8a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 0
+    Name: Select
+    clip: {fileID: 8300000, guid: 7770117b7a4c9694a82b7e511fa26a07, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 0
+    Name: Book
+    clip: {fileID: 8300000, guid: dd269f1453234c14bb9cd34539c05342, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 0
+    Name: Cancel
+    clip: {fileID: 8300000, guid: ce62a5fa41400684499d3bd8b6e6f580, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
