@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &504599400314651032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7492755732066189000}
+  - component: {fileID: 6865312546530548076}
+  m_Layer: 0
+  m_Name: Dialogue#5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7492755732066189000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504599400314651032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6865312546530548076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504599400314651032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e300b07914d9c0c4c91b3b3f7287a466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  falaNPCPrimaria: "\"N\xE3o temos mais tempo, voc\xEA precisa enfrentar ele agora!\""
+  opcoesPerguntaJogador:
+  - '"Onde"'
+  - "\"Me diga mais sobre qual deles est\xE1 vindo.\""
+  - "\"N\xE3o lembro de nada. Me diga o que eu posso fazer.\""
+  respostaNPC:
+  - "\"O portal est\xE1 abrindo... ele j\xE1 est\xE1 aqui\""
+  - "\"Ele \xE9 uma grande corrup\xE7\xE3o, uma das mais fortes. Ele cresceu pois
+    todos o achavam normal como se sua solu\xE7\xE3o fosse apenas um ch\xE1 de camomila\""
+  - "\"Voc\xEA \xE9 aquilo que faz as pessoas n\xE3o desistirem. USE SUA LUZ!\""
