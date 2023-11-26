@@ -41,6 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3080239363
+    locked: 0
+  - name: Particles
+    uniqueID: 1253239005
+    locked: 0
+  - name: Middleground
+    uniqueID: 1141510259
+    locked: 0
+  - name: Platforms
+    uniqueID: 60540203
+    locked: 0
   - name: Characters
     uniqueID: 874647469
+    locked: 0
+  - name: Frontground
+    uniqueID: 1319070687
     locked: 0
