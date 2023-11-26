@@ -17,11 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
-    
+
     private bool wasJumping = false;
 
     private MovementState currentState;
-    
+
     private bool isWalking = false;
 
     // Start is called before the first frame update
@@ -57,6 +57,10 @@ public class PlayerMovement : MonoBehaviour
             UpdateAnimationStateMachine();
 
             wasJumping = _anim.GetInteger("state") == (int)MovementState.JUMP;
+        }
+        else
+        {
+            _rb.velocity = Vector2.zero;
         }
 
         // Play or stop footstep sound based on movement
