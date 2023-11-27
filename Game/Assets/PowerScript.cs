@@ -17,12 +17,25 @@ public class PowerScript : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Verifica se o poder atingiu o jogador
-        if (collision.gameObject.CompareTag("Player"))
+        if (!isAPlayer)
         {
-            Debug.Log("player acertado");
-            collision.gameObject.GetComponent<PlayerScript>().RecebeDano(15.0f); // Ajuste o valor de dano conforme necessário
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("player acertado");
+                collision.gameObject.GetComponent<PlayerScript>().RecebeDano(15.0f);
+                Destroy(gameObject);
+            }
+
         }
-        Destroy(gameObject);
+
+        if (isAPlayer)
+        {
+            if (collision.gameObject.CompareTag("Boss"))
+            {
+                Debug.Log("boss acertado");
+                collision.gameObject.GetComponent<BossScript>().RecebeDano(15.0f);
+                Destroy(gameObject);
+            }
+        }
     }
 }

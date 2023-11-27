@@ -26366,7 +26366,7 @@ MonoBehaviour:
   pontoLancamento: {fileID: 1910544142}
   velocidadePoder: 5
   poderEspecialItensConsumidos: 0
-  poderPrefab: {fileID: 0}
+  poderPrefab: {fileID: 7001458871874413936, guid: b7575882c773fd84f95c2f9f5e249a72, type: 3}
 --- !u!4 &1910544142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8739334460369605121, guid: c125350cfc830e4458e35eb71c20f487, type: 3}
