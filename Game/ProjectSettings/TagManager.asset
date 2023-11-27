@@ -7,6 +7,7 @@ TagManager:
   - Boss
   - GameManager
   - VirtualCamera
+  - FinalBoss
   layers:
   - Default
   - TransparentFX
