@@ -51,7 +51,6 @@ public class BossScript : MonoBehaviour
     void LancaPoderPeriodicamente()
     {
         tempoDesdeUltimoLancamento += Time.deltaTime;
-        Debug.Log(tempoDesdeUltimoLancamento);
 
         if (tempoDesdeUltimoLancamento >= intervaloLancamento)
         {
@@ -75,11 +74,6 @@ public class BossScript : MonoBehaviour
         poder.GetComponent<Rigidbody2D>().velocity = direcao * velocidadePoder;
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        RecebeDano(10.0f);
-    }
-
     public void RecebeDano(float dano)
     {
        if(dano > BossHealth)
@@ -87,6 +81,8 @@ public class BossScript : MonoBehaviour
             BossHealth = 0.0f;
             Destroy(gameObject);
         }
+
+        BossHealth -= dano;
     }
 
     public void RecebeDanoEspecial(float dano)
