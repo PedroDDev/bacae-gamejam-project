@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BossScript : MonoBehaviour
 {
-    public float velocidadeMovimento = 3f; // Velocidade de movimento vertical do vil�o
-    public GameObject poderPrefab; // Prefab do poder que ser� lan�ado
-    public Transform pontoLancamento; // Ponto de onde o poder ser� lan�ado
-    public float velocidadePoder = 5f; // Velocidade do poder lan�ado
-    public float intervaloLancamento = 5f;
+    public float velocidadeMovimento = 3f;
+    public GameObject poderPrefab;
+    public Transform pontoLancamento;
+    public float velocidadePoder = 5f;
+    public float intervaloLancamento = 2f;
+    public float delayMovimentoVertical = 5f;
     private Transform jogador;
     private float tempoDesdeUltimoLancamento;
     private float limiteInferior;
@@ -23,6 +24,7 @@ public class BossScript : MonoBehaviour
         float alturaTela = Camera.main.orthographicSize;
         limiteInferior = -alturaTela;
         limiteSuperior = alturaTela;
+        InvokeRepeating("MovimentaVerticalComDelay", delayMovimentoVertical, 1f);
     }
 
     // Update is called once per frame
@@ -34,14 +36,16 @@ public class BossScript : MonoBehaviour
 
     void MovimentaBoss()
     {
-        float novaPosY = Mathf.Lerp(transform.position.y, GetNovaPosicaoVertical(), Time.deltaTime * velocidadeMovimento);
-        transform.position = new Vector3(transform.position.x, novaPosY, transform.position.z);
+        float novaPosX = Mathf.Clamp(jogador.position.x + 5f, float.MinValue, float.MaxValue);
+        float novaPosY = Mathf.Lerp(transform.position.y, jogador.position.y, Time.deltaTime * velocidadeMovimento);
+
+        transform.position = new Vector3(novaPosX, novaPosY, transform.position.z);
     }
 
-    float GetNovaPosicaoVertical()
+    void MovimentaVerticalComDelay()
     {
-        float novaPosicaoY = Mathf.Clamp(transform.position.y + Random.Range(-1f, 1f) * velocidadeMovimento, limiteInferior, limiteSuperior);
-        return novaPosicaoY;
+        float novaPosY = Mathf.Lerp(transform.position.y, jogador.position.y, Time.deltaTime * velocidadeMovimento);
+        transform.position = new Vector3(transform.position.x, novaPosY, transform.position.z);
     }
 
     void LancaPoderPeriodicamente()
@@ -58,16 +62,16 @@ public class BossScript : MonoBehaviour
     void LancaPoder()
     {
         AudioManager.instance.Play("EnemyShoot");
-        // Cria��o do poder
+       
         GameObject poder = Instantiate(poderPrefab, pontoLancamento.position, Quaternion.identity);
 
-        // Define a dire��o do poder em dire��o ao jogador
+        
         Vector3 direcao = (jogador.transform.position - pontoLancamento.position).normalized;
-        //Vector3 direcao = pontoLancamento.position.normalized;
+        
         direcao.y = 0;
         direcao.Normalize();
 
-        // Aplica velocidade ao poder
+     
         poder.GetComponent<Rigidbody2D>().velocity = direcao * velocidadePoder;
     }
 
