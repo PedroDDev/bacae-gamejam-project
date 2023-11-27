@@ -6,6 +6,7 @@ using System.Linq;
 
 public class DialogueBehavior : MonoBehaviour
 {
+    public Slider hopeStatus;
     public GameObject [] prefabDialogo;
     [SerializeField] private GameObject dialogueObj;
     [SerializeField] private GameObject dialogueQuestionsObj;
@@ -28,6 +29,7 @@ public class DialogueBehavior : MonoBehaviour
     public float typingSpeed;
 
     private bool _canAsk;
+    private float statusCounter = 0;
 
     private DialogueObject dialogoAtual;
 
@@ -35,6 +37,9 @@ public class DialogueBehavior : MonoBehaviour
     {
         gameManager = GameObject.FindWithTag("GameManager");
         _player = FindObjectOfType<PlayerMovement>();
+        hopeStatus.maxValue = 100;
+        hopeStatus.minValue = 0;
+        hopeStatus.value = statusCounter;
     }
 
     void Update()
@@ -106,6 +111,8 @@ public class DialogueBehavior : MonoBehaviour
                     dialogueObj.SetActive(false);
                     _player.canMove = true;
                     Destroy(npcToDestroy);
+                    statusCounter+= 9;
+                    hopeStatus.value = statusCounter;
                 }
             }
             else
@@ -115,6 +122,8 @@ public class DialogueBehavior : MonoBehaviour
                 dialogueObj.SetActive(false);
                 _player.canMove = true;
                 Destroy(npcToDestroy);
+                statusCounter += 9;
+                hopeStatus.value = statusCounter;
             }
         }
     }
