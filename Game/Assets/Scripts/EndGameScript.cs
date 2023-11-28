@@ -68,6 +68,8 @@ public class EndGameScript : MonoBehaviour
 
     public void BackToMenu()
     {
+        AudioManager.instance.StopPlaying("Happy");
+        AudioManager.instance.Play("SelectSound");
         SceneManager.LoadScene("Menu");
     }
 }

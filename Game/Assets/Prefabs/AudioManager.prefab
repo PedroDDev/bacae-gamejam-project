@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-8706029365965127354
 MonoBehaviour:
@@ -76,7 +76,7 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - loop: 0
-    Name: Select
+    Name: SelectSound
     clip: {fileID: 8300000, guid: 7770117b7a4c9694a82b7e511fa26a07, type: 3}
     volume: 1
     pitch: 1
@@ -90,6 +90,30 @@ MonoBehaviour:
   - loop: 0
     Name: Cancel
     clip: {fileID: 8300000, guid: ce62a5fa41400684499d3bd8b6e6f580, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 1
+    Name: Fight
+    clip: {fileID: 8300000, guid: 228bd6c7d1462eb4dbbeee67dd95072b, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 1
+    Name: Echoes
+    clip: {fileID: 8300000, guid: 2d4d5d7eb46954145b5b8db945a49d15, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 1
+    Name: Echoes
+    clip: {fileID: 8300000, guid: 2d4d5d7eb46954145b5b8db945a49d15, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - loop: 1
+    Name: Footsteps
+    clip: {fileID: 8300000, guid: f12b0b5a96c04a148988d3ba537e2aa5, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

@@ -7,6 +7,7 @@ public class TutorialScript : MonoBehaviour
 {
     public void StartGame()
     {
+        AudioManager.instance.Play("SelectSound");
         SceneManager.LoadScene("LevelDesignScene");
     }
 }
