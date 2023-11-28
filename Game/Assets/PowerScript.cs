@@ -6,10 +6,6 @@ public class PowerScript : MonoBehaviour
 {
     public bool isAPlayer = false;
 
-    public void Start()
-    {
-       
-    }
     public void InicializaTrajetoria(Vector3 trajetoria, float Velocidade, Rigidbody2D collider)
     {
         collider.velocity = trajetoria * Velocidade;
@@ -27,8 +23,7 @@ public class PowerScript : MonoBehaviour
             }
 
         }
-
-        if (isAPlayer)
+        else if (isAPlayer)
         {
             if (collision.gameObject.CompareTag("Boss"))
             {
