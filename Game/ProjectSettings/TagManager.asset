@@ -8,6 +8,7 @@ TagManager:
   - GameManager
   - VirtualCamera
   - FinalBoss
+  - Environment
   layers:
   - Default
   - TransparentFX

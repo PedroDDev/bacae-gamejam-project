@@ -32,6 +32,10 @@ public class PowerScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        Destroy(gameObject);
+
+        if (collision.gameObject.CompareTag("Environment"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
