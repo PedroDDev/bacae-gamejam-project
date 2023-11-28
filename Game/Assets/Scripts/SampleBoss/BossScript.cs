@@ -86,6 +86,8 @@ public class BossScript : MonoBehaviour
        if(dano > BossHealth)
         {
             BossHealth = 0.0f;
+            AudioManager.instance.StopPlaying("Fight");
+            AudioManager.instance.Play("Happy");
             Destroy(gameObject);
             SceneManager.LoadScene("EndGameScene");
 
