@@ -16,12 +16,19 @@ public class PlayerScript : MonoBehaviour
     public GameObject poderPrefab;
     private GameObject boss;
 
+    private PlayerMovement _pm;
+
+    private RestartGameScript final;
+
     void Start()
     {
         boss = GameObject.FindWithTag("Boss");
         vidaAtual = vidaMaxima;
         healthBar.maxValue = vidaMaxima;
         healthBar.value = vidaAtual;
+
+        final = FindObjectOfType<RestartGameScript>();
+        _pm = GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -39,10 +46,10 @@ public class PlayerScript : MonoBehaviour
 
     void LancaPoder()
     {
-        // Criação do poder
+        // Criaï¿½ï¿½o do poder
         GameObject poder = Instantiate(poderPrefab, pontoLancamento.position + Vector3.right, Quaternion.identity);
 
-        // Define a direção do poder em direção ao jogador
+        // Define a direï¿½ï¿½o do poder em direï¿½ï¿½o ao jogador
         Vector3 direcao = (boss.transform.position - pontoLancamento.position).normalized;
         //Vector3 direcao = pontoLancamento.position.normalized;
         direcao.y = 0;
@@ -86,7 +93,7 @@ public class PlayerScript : MonoBehaviour
     public void ConsumirItem()
     {
         //vidaAtual += 10; // Exemplo: recupera 10 de vida ao consumir um item
-        //vidaAtual = Mathf.Min(vidaAtual, vidaMaxima); // Garante que a vida não ultrapasse o máximo
+        //vidaAtual = Mathf.Min(vidaAtual, vidaMaxima); // Garante que a vida nï¿½o ultrapasse o mï¿½ximo
         //AtualizaHealthBar();
         poderEspecialItensConsumidos++;
 
@@ -99,14 +106,16 @@ public class PlayerScript : MonoBehaviour
     public void RecebeDano(float dano)
     {
         vidaAtual -= dano;
-        vidaAtual = Mathf.Max(0, vidaAtual); // Garante que a vida não seja negativa
+        vidaAtual = Mathf.Max(0, vidaAtual); // Garante que a vida nï¿½o seja negativa
         AtualizaHealthBar();
 
         if (vidaAtual <= 0)
         {
-            // Implemente lógica de morte do jogador
+            // Implemente lï¿½gica de morte do jogador
             // Exemplo: reiniciar o jogo
             Debug.Log("Jogador morreu!");
+            _pm.canMove = false;
+            final.restartPanel.SetActive(true);
         }
     }
 
