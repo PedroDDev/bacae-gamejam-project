@@ -32,5 +32,6 @@ public class PowerScript : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        Destroy(gameObject);
     }
 }

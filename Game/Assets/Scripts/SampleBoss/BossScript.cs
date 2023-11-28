@@ -15,11 +15,14 @@ public class BossScript : MonoBehaviour
     private float limiteInferior;
     private float limiteSuperior;
     private float BossHealth = 100.0f;
+    private Rigidbody2D rb;
 
     void Start()
     {
         AudioManager.instance.Play("Fight");
         jogador = GameObject.FindWithTag("Player").transform;
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        rb.freezeRotation = true;
 
         float alturaTela = Camera.main.orthographicSize;
         limiteInferior = -alturaTela;
@@ -36,16 +39,19 @@ public class BossScript : MonoBehaviour
 
     void MovimentaBoss()
     {
-        float novaPosX = Mathf.Clamp(jogador.position.x + 5f, float.MinValue, float.MaxValue);
-        float novaPosY = Mathf.Lerp(transform.position.y, jogador.position.y, Time.deltaTime * velocidadeMovimento);
+        float delayPos = jogador.position.x + 4f;
+        float novaPosX = Mathf.Clamp(delayPos, float.MinValue, float.MaxValue);
+        delayPos = jogador.position.y;
+        float novaPosY = Mathf.Lerp(transform.position.y, delayPos, Time.deltaTime * velocidadeMovimento);
 
-        transform.position = new Vector3(novaPosX, novaPosY, transform.position.z);
+        rb.MovePosition(new Vector2(novaPosX, novaPosY));
     }
 
     void MovimentaVerticalComDelay()
     {
-        float novaPosY = Mathf.Lerp(transform.position.y, jogador.position.y, Time.deltaTime * velocidadeMovimento);
-        transform.position = new Vector3(transform.position.x, novaPosY, transform.position.z);
+        float delayPos = jogador.position.y;
+        float novaPosY = Mathf.Lerp(transform.position.y, delayPos, Time.deltaTime * velocidadeMovimento);
+        rb.MovePosition(new Vector2(transform.position.x, novaPosY));
     }
 
     void LancaPoderPeriodicamente()
