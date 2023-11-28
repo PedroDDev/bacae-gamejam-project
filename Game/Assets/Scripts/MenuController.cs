@@ -14,7 +14,7 @@ public class MenuController : MonoBehaviour
     public void PlayGame()
     {
         AudioManager.instance.Play("SelectSound");
-        SceneManager.LoadScene("LevelDesignScene");
+        SceneManager.LoadScene("TutorialScene");
     }
 
     public void ExitGame()
